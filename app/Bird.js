@@ -23,11 +23,19 @@ export default class Bird {
 
         this._gravity = 0.25
         this._speed = 0
+        this._rotation = 0
     }
 
     update() {
         // Update physics
         this._speed += this._gravity
+
+        if (this._speed >= 4.6) {
+            this._rotation = 90 * Math.PI / 180
+            this._step = 1
+        } else {
+            this._rotation = -25 * Math.PI / 180
+        }
 
         this._y += this._speed
 
@@ -42,7 +50,12 @@ export default class Bird {
     draw(ctx) {
         this.update()
         const frame = this._frames[this._step]
-        ctx.drawImage(this._img, frame.sx, frame.sy, this._sw, this._sh, this._x, this._y, this._w, this._h)
+        ctx.save()
+        ctx.translate(this._x, this._y)
+        ctx.rotate(this._rotation)
+        ctx.drawImage(this._img, frame.sx, frame.sy, this._sw, this._sh,
+            -this._w / 2, -this._h / 2, this._w, this._h)
+        ctx.restore()
     }
 
     flap() {
