@@ -20,4 +20,8 @@ const loop = () => {
     requestAnimationFrame(loop)
 }
 
+document.onclick = () => {
+    bird.flap()
+}
+
 loop()
