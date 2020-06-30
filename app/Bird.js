@@ -1,3 +1,5 @@
+import Collider from './Collider.js'
+
 export default class Bird {
     constructor(img) {
         this._img = img
@@ -45,5 +47,9 @@ export default class Bird {
 
     flap() {
         this._speed = -4.6
+    }
+
+    getCollider() {
+        return new Collider(this._x, this._y, this._w, this._h)
     }
 }

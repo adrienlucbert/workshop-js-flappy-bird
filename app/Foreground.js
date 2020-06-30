@@ -1,3 +1,5 @@
+import Collider from "./Collider.js"
+
 export default class Foreground {
     constructor(img) {
         this._img = img
@@ -15,5 +17,9 @@ export default class Foreground {
     draw(ctx) {
         ctx.drawImage(this._img, this._sx, this._sy, this._sw, this._sh, this._x, this._y, this._w, this._h)
         ctx.drawImage(this._img, this._sx, this._sy, this._sw, this._sh, this._x + this._w, this._y, this._w, this._h)
+    }
+
+    getCollider() {
+        return new Collider(this._x, this._y, this._w * 2, this._h)
     }
 }

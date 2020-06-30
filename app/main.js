@@ -17,6 +17,10 @@ const loop = () => {
     bg.draw(ctx)
     fg.draw(ctx)
     bird.draw(ctx)
+    if (bird.getCollider().collide(fg.getCollider())) {
+        console.log('You lose')
+        return
+    }
     requestAnimationFrame(loop)
 }
 
